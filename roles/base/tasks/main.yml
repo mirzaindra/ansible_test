@@ -1,0 +1,19 @@
+- name: install mariadb server package (CentOS)
+  tags: centos,db,mariadb
+  dnf:
+    name: mariadb
+    state: latest
+  when: ansible_distribution == "CentOS"
+
+- name: install mariadb package (Ubuntu)
+  tags: db,mariadb,ubuntu
+  apt: 
+    name: mariadb-server
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: add ssh key for simone
+  authorized_key:
+    user: simone
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEaKQ1aO1DdnJmTLR9yGebm+l8QH0z0vAUUnX0FlicSk ansible"
+
